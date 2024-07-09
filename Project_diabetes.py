@@ -50,7 +50,7 @@ center=0, vmin=-1, vmax=1)
 max_corr_values = data.corr()['Outcome'].abs().drop('Outcome').nlargest(4)
 max_corr_indices = max_corr_values.index
 
-print(f"Największe korelacje ze zmienną 'Outcome':")
+print(f"The highest correlations with the variable 'Outcome':")
 for idx in max_corr_indices:
     max_corr_value = data.corr()['Outcome'][idx]
     print(f"{idx}: {max_corr_value:.2f}")
@@ -58,7 +58,7 @@ for idx in max_corr_indices:
 min_corr_values = data.corr()['Outcome'].abs().drop('Outcome').nsmallest(4)
 min_corr_indices = min_corr_values.index
 
-print(f"Najmniejsze korelacje ze zmienną 'Outcome':")
+print(f"Lowest correlations with the variable 'Outcome':")
 for idx in min_corr_indices:
     min_corr_value = data.corr()['Outcome'][idx]
     print(f"{idx}: {min_corr_value:.2f}")
@@ -109,10 +109,10 @@ X_test_scaled = scaler.transform(X_test)
 mean_values = np.mean(X_train_scaled, axis=0)
 std_values = np.std(X_train_scaled, axis=0)
 
-print("Średnie dla przeskalowanych danych treningowych:")
+print("Averages for scaled training data:")
 print(mean_values)
 
-print("\nOdchylenia standardowe dla przeskalowanych danych treningowych:")
+print("\nStandard deviations for scaled training data:")
 print(std_values)
 
 # KNN model
@@ -180,13 +180,13 @@ plt.legend()
 plt.show()
 
 # Classification measures on learning and test sets
-print("Zbiór uczący:")
+print("Training set:")
 report = classification_report(y_train, y_pred_train)
 print(report)
 
 y_pred_test = model.predict(X_test)
 
-print("Zbiór testowy:")
+print("Testing set:")
 report = classification_report(y_test, y_pred_test)
 print(report)
 
@@ -217,14 +217,14 @@ graph = pydotplus.graph_from_dot_data(dot_data)
 Image(graph.create_png())
 
 
-print("Zbiór uczący:")
+print("Training set:")
 report = classification_report(y_train, y_pred_train)
 print(report)
 
 
 y_pred_test = model3.predict(X_test)
 
-print("Zbiór testowy:")
+print("Testing set:")
 report = classification_report(y_test, y_pred_test)
 print(report)
 
@@ -235,7 +235,7 @@ rf_model.fit(X_train, y_train)
 
 y_pred_train = rf_model.predict(X_train)
 
-print("Zbiór treningowy:")
+print("Training set:")
 print(classification_report(y_train, y_pred_train))
 
 conf_matrix_train = confusion_matrix(y_train, y_pred_train)
@@ -248,7 +248,7 @@ plt.show()
 
 y_pred_test = rf_model.predict(X_test)
 
-print("Zbiór testowy:")
+print("Testing set:")
 print(classification_report(y_test, y_pred_test))
 
 conf_matrix_test = confusion_matrix(y_test, y_pred_test)
@@ -279,9 +279,9 @@ for param_name, param_vals in zip(param_names, param_values):
         y_pred = rf.predict(X_test)
 
         print(f"{param_name}={val}:")
-        print("Dokładność na zbiorze testowym:", accuracy_score(y_test, y_pred))
-        print("Czułość:", recall_score(y_test, y_pred))
-        print("Specyficzność:", precision_score(y_test, y_pred))
+        print("Accuracy on the test set:", accuracy_score(y_test, y_pred))
+        print("Recall:", recall_score(y_test, y_pred))
+        print("Precision:", precision_score(y_test, y_pred))
         print("-" * 50)
 
 
@@ -296,9 +296,9 @@ accuracy = accuracy_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
 
-print("Dokładność:", accuracy)
-print("Czułość:", recall)
-print("Precyzja:", precision)
+print("Accuracy:", accuracy)
+print("Recall:", recall)
+print("Precision:", precision)
 print("-" * 50)
 
 constant_params = {
@@ -325,9 +325,9 @@ best_rf.fit(X_train, y_train)
 
 y_pred = best_rf.predict(X_test)
 
-print("Dokładność:", accuracy_score(y_test, y_pred))
-print("Czułość:", recall_score(y_test, y_pred))
-print("Specyficzność:", precision_score(y_test, y_pred))
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Recall:", recall_score(y_test, y_pred))
+print("Precision:", precision_score(y_test, y_pred))
 print("-" * 50)
 
 # SHAP values
